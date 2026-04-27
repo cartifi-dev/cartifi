@@ -23,7 +23,7 @@ export const Demo = () => {
             See your savings <span className="text-gradient">before everyone else.</span>
           </h2>
           <p className="mt-4 text-muted-foreground text-lg">
-            Drop your email — we'll send you early access and your first optimized cart.
+            Drop your email and we'll send you early access and your first optimized cart.
           </p>
         </div>
 

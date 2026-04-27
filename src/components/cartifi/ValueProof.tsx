@@ -58,7 +58,7 @@ export const ValueProof = () => {
             Same list. <span className="text-gradient">Different total.</span>
           </h2>
           <p className="mt-4 text-muted-foreground text-lg">
-            Same five items, three stores. The gap adds up — every week.
+            Same five items, three stores. The gap adds up every week.
           </p>
         </div>
 
