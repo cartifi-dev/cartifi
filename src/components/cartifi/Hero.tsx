@@ -34,7 +34,7 @@ export const Hero = () => {
             ))}
           </h1>
           <p className="mt-6 text-lg lg:text-xl text-muted-foreground max-w-xl leading-relaxed">
-            Cartifi builds your cheapest possible cart across stores — instantly.
+            Cartifi builds your cheapest possible cart across stores, instantly.
           </p>
           <div className="mt-9 flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <Button variant="cta" size="xl" asChild>
