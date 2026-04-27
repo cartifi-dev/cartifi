@@ -5,7 +5,6 @@ import { BeforeAfter } from "@/components/cartifi/BeforeAfter";
 import { LifeBenefit } from "@/components/cartifi/LifeBenefit";
 import { Demo } from "@/components/cartifi/Demo";
 import { HowItWorks } from "@/components/cartifi/HowItWorks";
-import { SocialProof } from "@/components/cartifi/SocialProof";
 import { FinalCTA } from "@/components/cartifi/FinalCTA";
 import { Footer } from "@/components/cartifi/Footer";
 import { useReveal } from "@/components/cartifi/useReveal";
@@ -21,7 +20,6 @@ const Index = () => {
       <LifeBenefit />
       <Demo />
       <HowItWorks />
-      <SocialProof />
       <FinalCTA />
       <Footer />
     </main>

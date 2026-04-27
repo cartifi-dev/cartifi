@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import mascotHappy from "@/assets/mascot-happy.png";
+import mascotHappy from "@/assets/mascot-happy.jpg";
 
 export const FinalCTA = () => (
   <section className="py-24 lg:py-32 relative overflow-hidden">
@@ -23,9 +23,11 @@ export const FinalCTA = () => (
           <p className="mt-4 text-sm text-muted-foreground">Same groceries. Lower total.</p>
         </div>
         <div className="reveal flex justify-center">
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-warm opacity-40 blur-3xl rounded-full" />
-            <img src={mascotHappy} alt="Happy Cartifi mascot relaxing" loading="lazy" width={1024} height={1024} className="relative w-full max-w-md object-contain drop-shadow-2xl animate-pulse-soft" />
+          <div className="relative max-w-md w-full">
+            <div className="absolute -inset-6 bg-gradient-warm opacity-30 blur-3xl rounded-[2.5rem]" />
+            <div className="relative rounded-[2rem] overflow-hidden shadow-card border border-border/60">
+              <img src={mascotHappy} alt="Happy Cartifi mascot relaxing with savings receipt" loading="lazy" width={1200} height={900} className="w-full h-auto object-cover" />
+            </div>
           </div>
         </div>
       </div>

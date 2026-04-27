@@ -1,5 +1,5 @@
 import { Smartphone, Clock, Layers, Sparkles } from "lucide-react";
-import mascotCalm from "@/assets/mascot-calm.png";
+import mascotCalm from "@/assets/mascot-calm.jpg";
 
 export const BeforeAfter = () => (
   <section className="py-24 lg:py-32 bg-gradient-soft">
@@ -31,12 +31,12 @@ export const BeforeAfter = () => (
             <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-2xl" />
             <p className="text-xs uppercase tracking-widest text-primary mb-4">After</p>
             <h3 className="text-2xl font-semibold mb-6">One clean result. Done.</h3>
-            <div className="flex items-center gap-4 mb-6">
-              <img src={mascotCalm} alt="Calm Cartifi mascot" loading="lazy" width={1024} height={1024} className="w-24 h-24 object-contain" />
-              <div>
-                <div className="text-3xl font-semibold tabular-nums">487 Kč</div>
-                <div className="text-sm text-success font-medium">−128 Kč saved</div>
-              </div>
+            <div className="rounded-2xl overflow-hidden mb-5 border border-border/60">
+              <img src={mascotCalm} alt="Calm Cartifi mascot" loading="lazy" width={1200} height={900} className="w-full h-44 object-cover" />
+            </div>
+            <div className="flex items-baseline gap-3 mb-3">
+              <div className="text-3xl font-semibold tabular-nums">487 Kč</div>
+              <div className="text-sm text-success font-medium">−128 Kč saved</div>
             </div>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Sparkles className="w-4 h-4 text-orange" /> 12 items, optimized across 3 stores in 2.4s
