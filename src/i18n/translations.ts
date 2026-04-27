@@ -183,6 +183,18 @@ const data = {
   },
 } as const;
 
-export type Translations = typeof data.en;
+type DeepWiden<T> = T extends ReadonlyArray<infer U>
+  ? DeepWiden<U>[]
+  : T extends object
+    ? { -readonly [K in keyof T]: DeepWiden<T[K]> }
+    : T extends string
+      ? string
+      : T extends number
+        ? number
+        : T extends boolean
+          ? boolean
+          : T;
 
-export const translations: Record<Lang, Translations> = data;
+export type Translations = DeepWiden<typeof data.en>;
+
+export const translations: Record<Lang, Translations> = data as unknown as Record<Lang, Translations>;
