@@ -1,12 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import mascotHero from "@/assets/mascot-hero.jpg";
+import { useLang } from "@/i18n/LanguageContext";
 
 export const Hero = () => {
+  const { t } = useLang();
   const variant = new Date().getDate() % 2;
-  const headline = variant === 0
-    ? "How much are you overpaying on groceries?"
-    : "Same groceries. Lower total.";
+  const headline = variant === 0 ? t.hero.headlineA : t.hero.headlineB;
 
   return (
     <section id="top" className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
@@ -20,7 +20,7 @@ export const Hero = () => {
         <div className="animate-fade-in">
           <div className="inline-flex items-center gap-2 rounded-full bg-card border border-border px-3 py-1.5 text-xs text-muted-foreground shadow-soft mb-6">
             <Sparkles className="w-3.5 h-3.5 text-orange" />
-            Built for smart shoppers
+            {t.hero.badge}
           </div>
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-semibold leading-[1.02] tracking-tight">
             {headline.split(" ").map((w, i, arr) => (
@@ -34,16 +34,16 @@ export const Hero = () => {
             ))}
           </h1>
           <p className="mt-6 text-lg lg:text-xl text-muted-foreground max-w-xl leading-relaxed">
-            Cartifi builds your cheapest possible cart across stores, instantly.
+            {t.hero.subtitle}
           </p>
           <div className="mt-9 flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <Button variant="cta" size="xl" asChild>
               <a href="#demo">
-                Check your savings <ArrowRight className="w-4 h-4" />
+                {t.hero.cta} <ArrowRight className="w-4 h-4" />
               </a>
             </Button>
             <p className="text-sm text-muted-foreground">
-              No switching apps. No comparing. No effort.
+              {t.hero.note}
             </p>
           </div>
         </div>
@@ -55,7 +55,7 @@ export const Hero = () => {
             <div className="relative rounded-[2rem] overflow-hidden shadow-card border border-border/60">
               <img
                 src={mascotHero}
-                alt="Cartifi mascot overwhelmed by grocery prices and store apps"
+                alt={t.hero.mascotAlt}
                 width={1200}
                 height={1600}
                 className="w-full h-auto object-cover"

@@ -1,19 +1,21 @@
 import { Footprints, Mountain, Coffee, Heart } from "lucide-react";
+import { useLang } from "@/i18n/LanguageContext";
 
-const items = [
-  { icon: Footprints, label: "A longer walk" },
-  { icon: Mountain, label: "An unhurried hike" },
-  { icon: Coffee, label: "A slower coffee" },
-  { icon: Heart, label: "Time with family" },
-];
-
-export const LifeBenefit = () => (
+export const LifeBenefit = () => {
+  const { t } = useLang();
+  const items = [
+    { icon: Footprints, label: t.life.walk },
+    { icon: Mountain, label: t.life.hike },
+    { icon: Coffee, label: t.life.coffee },
+    { icon: Heart, label: t.life.family },
+  ];
+  return (
   <section className="py-24 lg:py-32 relative overflow-hidden">
     <div className="absolute inset-0 -z-10 bg-gradient-soft opacity-60" />
     <div className="container">
       <div className="max-w-2xl mx-auto text-center reveal">
         <h2 className="text-4xl lg:text-5xl font-semibold tracking-tight">
-          Less time checking prices. <span className="text-gradient">More time living.</span>
+          {t.life.titleA} <span className="text-gradient">{t.life.titleB}</span>
         </h2>
       </div>
       <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 max-w-4xl mx-auto reveal">
@@ -28,4 +30,5 @@ export const LifeBenefit = () => (
       </div>
     </div>
   </section>
-);
+  );
+};

@@ -1,17 +1,17 @@
 import { ListPlus, Wand2, ShoppingBag } from "lucide-react";
+import { useLang } from "@/i18n/LanguageContext";
 
-const steps = [
-  { icon: ListPlus, title: "Add your list", body: "Type, paste, or photograph what you need." },
-  { icon: Wand2, title: "We compare", body: "Cartifi checks every store, every price, instantly." },
-  { icon: ShoppingBag, title: "Get the cheapest cart", body: "One result. Lowest total. Done." },
-];
+const icons = [ListPlus, Wand2, ShoppingBag];
 
-export const HowItWorks = () => (
+export const HowItWorks = () => {
+  const { t } = useLang();
+  const steps = t.how.steps.map((s, i) => ({ ...s, icon: icons[i] }));
+  return (
   <section id="how" className="py-24 lg:py-32">
     <div className="container">
       <div className="max-w-2xl mx-auto text-center reveal">
         <h2 className="text-4xl lg:text-5xl font-semibold tracking-tight">
-          Three steps. <span className="text-gradient">That's it.</span>
+          {t.how.titleA} <span className="text-gradient">{t.how.titleB}</span>
         </h2>
       </div>
       <div className="mt-14 grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -32,4 +32,5 @@ export const HowItWorks = () => (
       </div>
     </div>
   </section>
-);
+  );
+};

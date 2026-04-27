@@ -2,8 +2,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { ArrowRight, Check, Loader2 } from "lucide-react";
+import { useLang } from "@/i18n/LanguageContext";
 
 export const Demo = () => {
+  const { t } = useLang();
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "loading" | "done">("idle");
 
@@ -18,12 +20,12 @@ export const Demo = () => {
     <section id="demo" className="py-24 lg:py-32">
       <div className="container">
         <div className="max-w-2xl mx-auto text-center reveal">
-          <p className="text-sm font-medium text-orange uppercase tracking-widest mb-3">Be first in line</p>
+          <p className="text-sm font-medium text-orange uppercase tracking-widest mb-3">{t.demo.eyebrow}</p>
           <h2 className="text-4xl lg:text-5xl font-semibold tracking-tight">
-            See your savings <span className="text-gradient">before everyone else.</span>
+            {t.demo.titleA} <span className="text-gradient">{t.demo.titleB}</span>
           </h2>
           <p className="mt-4 text-muted-foreground text-lg">
-            Drop your email and we'll send you early access and your first optimized cart.
+            {t.demo.subtitle}
           </p>
         </div>
 
@@ -32,7 +34,7 @@ export const Demo = () => {
             <Input
               type="email"
               required
-              placeholder="you@email.com"
+              placeholder={t.demo.placeholder}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={state !== "idle"}
@@ -45,22 +47,22 @@ export const Demo = () => {
               disabled={state !== "idle"}
               className="sm:w-auto w-full"
             >
-              {state === "loading" && <><Loader2 className="w-4 h-4 animate-spin" /> Saving spot…</>}
-              {state === "idle" && <>Get early access <ArrowRight className="w-4 h-4" /></>}
-              {state === "done" && <><Check className="w-4 h-4" /> You're in</>}
+              {state === "loading" && <><Loader2 className="w-4 h-4 animate-spin" /> {t.demo.ctaLoading}</>}
+              {state === "idle" && <>{t.demo.ctaIdle} <ArrowRight className="w-4 h-4" /></>}
+              {state === "done" && <><Check className="w-4 h-4" /> {t.demo.ctaDone}</>}
             </Button>
           </div>
           <p className="mt-4 text-center text-sm text-muted-foreground">
-            Free. No spam. One email when Cartifi opens.
+            {t.demo.footnote}
           </p>
 
           {state === "done" && (
             <div className="mt-6 rounded-3xl bg-success-soft border border-success/20 p-6 text-center animate-fade-in">
               <div className="inline-flex items-center gap-2 text-success font-semibold">
-                <Check className="w-5 h-5" /> Welcome aboard
+                <Check className="w-5 h-5" /> {t.demo.welcome}
               </div>
               <p className="mt-2 text-sm text-foreground/80">
-                We saved your spot. Check your inbox soon for your first cheapest cart.
+                {t.demo.welcomeBody}
               </p>
             </div>
           )}

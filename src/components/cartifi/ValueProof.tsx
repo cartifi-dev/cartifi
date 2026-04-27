@@ -1,7 +1,8 @@
 import { Check } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { useLang } from "@/i18n/LanguageContext";
 
-const items = [
+const itemPrices = [
   { name: "Mléko 1 L", a: 28, b: 24, c: 22 },
   { name: "Chléb", a: 45, b: 39, c: 36 },
   { name: "Kuřecí prsa 1 kg", a: 199, b: 189, c: 169 },
@@ -10,9 +11,9 @@ const items = [
 ];
 
 const totals = {
-  a: items.reduce((s, i) => s + i.a, 0),
-  b: items.reduce((s, i) => s + i.b, 0),
-  c: items.reduce((s, i) => s + i.c, 0),
+  a: itemPrices.reduce((s, i) => s + i.a, 0),
+  b: itemPrices.reduce((s, i) => s + i.b, 0),
+  c: itemPrices.reduce((s, i) => s + i.c, 0),
 };
 
 function useCountUp(target: number, run: boolean) {
@@ -35,6 +36,7 @@ function useCountUp(target: number, run: boolean) {
 }
 
 export const ValueProof = () => {
+  const { t } = useLang();
   const ref = useRef<HTMLDivElement>(null);
   const [run, setRun] = useState(false);
   useEffect(() => {
@@ -53,30 +55,31 @@ export const ValueProof = () => {
     <section id="proof" className="py-24 lg:py-32" ref={ref}>
       <div className="container">
         <div className="max-w-2xl mx-auto text-center reveal">
-          <p className="text-sm font-medium text-orange uppercase tracking-widest mb-3">Real comparison</p>
+          <p className="text-sm font-medium text-orange uppercase tracking-widest mb-3">{t.proof.eyebrow}</p>
           <h2 className="text-4xl lg:text-5xl font-semibold tracking-tight">
-            Same list. <span className="text-gradient">Different total.</span>
+            {t.proof.titleA} <span className="text-gradient">{t.proof.titleB}</span>
           </h2>
           <p className="mt-4 text-muted-foreground text-lg">
-            Same five items, three stores. The gap adds up every week.
+            {t.proof.subtitle}
           </p>
         </div>
 
         <div className="mt-14 max-w-5xl mx-auto reveal">
           <div className="bg-card rounded-3xl shadow-card border border-border overflow-hidden">
             <div className="grid grid-cols-4 gap-2 p-5 border-b border-border bg-secondary/40 text-xs font-medium text-muted-foreground uppercase tracking-wider">
-              <div>Item</div>
+              <div>{t.proof.colItem}</div>
               <div className="text-right">Albert</div>
               <div className="text-right">Tesco</div>
-              <div className="text-right">Cartifi pick</div>
+              <div className="text-right">{t.proof.colPick}</div>
             </div>
-            {items.map((it) => {
+            {itemPrices.map((it, idx) => {
               const min = Math.min(it.a, it.b, it.c);
               const cell = (v: number) =>
                 `text-right tabular-nums ${v === min ? "text-success font-semibold" : "text-muted-foreground"}`;
+              const name = t.proof.items[idx]?.name ?? it.name;
               return (
                 <div key={it.name} className="grid grid-cols-4 gap-2 px-5 py-4 border-b border-border/60 items-center text-sm">
-                  <div className="font-medium">{it.name}</div>
+                  <div className="font-medium">{name}</div>
                   <div className={cell(it.a)}>{it.a} Kč</div>
                   <div className={cell(it.b)}>{it.b} Kč</div>
                   <div className="text-right">
@@ -88,7 +91,7 @@ export const ValueProof = () => {
               );
             })}
             <div className="grid grid-cols-4 gap-2 px-5 py-5 bg-secondary/30 items-center font-semibold">
-              <div>Total</div>
+              <div>{t.proof.total}</div>
               <div className="text-right text-muted-foreground tabular-nums">{ta} Kč</div>
               <div className="text-right text-muted-foreground tabular-nums">{tb} Kč</div>
               <div className="text-right text-success tabular-nums text-lg">{tc} Kč</div>
@@ -97,8 +100,8 @@ export const ValueProof = () => {
 
           <div className="mt-6 flex items-center justify-center">
             <div className="inline-flex items-center gap-3 rounded-full bg-success-soft border border-success/20 px-6 py-3">
-              <span className="text-success font-semibold">You save {savings} Kč</span>
-              <span className="text-muted-foreground text-sm">on this list alone</span>
+              <span className="text-success font-semibold">{t.proof.youSave} {savings} Kč</span>
+              <span className="text-muted-foreground text-sm">{t.proof.onThisList}</span>
             </div>
           </div>
         </div>
