@@ -1,6 +1,6 @@
 export type Lang = "en" | "cs";
 
-export const translations = {
+const data = {
   en: {
     nav: {
       how: "How it works",
@@ -183,4 +183,6 @@ export const translations = {
   },
 } as const;
 
-export type Translations = typeof translations.en;
+export type Translations = typeof data.en;
+
+export const translations: Record<Lang, Translations> = data;
