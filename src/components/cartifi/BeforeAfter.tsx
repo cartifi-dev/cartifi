@@ -31,8 +31,8 @@ export const BeforeAfter = () => (
             <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-2xl" />
             <p className="text-xs uppercase tracking-widest text-primary mb-4">After</p>
             <h3 className="text-2xl font-semibold mb-6">One clean result. Done.</h3>
-            <div className="rounded-2xl overflow-hidden mb-5 border border-border/60 bg-secondary/40">
-              <img src={mascotCalm} alt="Calm Cartifi mascot" loading="lazy" width={1200} height={900} className="w-full h-56 object-cover object-top" />
+            <div className="rounded-2xl overflow-hidden mb-5 border border-border/60 bg-gradient-soft flex items-center justify-center">
+              <img src={mascotCalm} alt="Calm Cartifi mascot" loading="lazy" width={1200} height={900} className="w-full h-52 object-contain" />
             </div>
             <div className="flex items-baseline gap-3 mb-3">
               <div className="text-3xl font-semibold tabular-nums">487 Kč</div>
