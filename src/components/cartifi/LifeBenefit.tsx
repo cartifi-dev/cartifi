@@ -21,13 +21,13 @@ export const LifeBenefit = () => {
             {t.life.titleA} <span className="text-gradient">{t.life.titleB}</span>
           </h2>
         </div>
-        <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6 max-w-6xl mx-auto reveal">
+        <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 max-w-4xl mx-auto reveal">
           {items.map((item) => (
             <figure
               key={item.label}
               className="group relative rounded-3xl overflow-hidden bg-card border border-border shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-glow"
             >
-              <div className="aspect-[4/5] overflow-hidden">
+              <div className="aspect-square overflow-hidden">
                 <img
                   src={item.img}
                   alt={item.alt}
@@ -37,10 +37,10 @@ export const LifeBenefit = () => {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
-              <div className="absolute inset-x-0 bottom-0 p-5 lg:p-6 bg-gradient-to-t from-black/70 via-black/30 to-transparent">
+              <div className="absolute inset-x-0 bottom-0 p-3 lg:p-4 bg-gradient-to-t from-black/75 via-black/35 to-transparent">
                 <figcaption className="text-white">
-                  <p className="text-lg lg:text-xl font-semibold tracking-tight">{item.label}</p>
-                  <p className="mt-1 text-sm text-white/80 leading-snug">{item.sub}</p>
+                  <p className="text-sm lg:text-base font-semibold tracking-tight">{item.label}</p>
+                  <p className="mt-0.5 text-[11px] lg:text-xs text-white/80 leading-snug line-clamp-2">{item.sub}</p>
                 </figcaption>
               </div>
             </figure>
