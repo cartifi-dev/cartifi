@@ -129,8 +129,6 @@ const Header = () => {
   );
 };
 
-type Step = ReturnType<typeof useLang> extends infer _ ? never : never;
-
 const StepCard = ({
   step,
   index,
