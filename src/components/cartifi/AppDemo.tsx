@@ -11,10 +11,15 @@ export const AppDemo = () => {
   const { t } = useLang();
   const steps = t.appDemo.steps;
   const sectionRef = useRef<HTMLElement | null>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
   const [progress, setProgress] = useState(0); // 0..1
   const [active, setActive] = useState(0);
 
   useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const sync = () => setIsDesktop(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
     const onScroll = () => {
       const el = sectionRef.current;
       if (!el) return;
@@ -34,6 +39,7 @@ export const AppDemo = () => {
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      mq.removeEventListener("change", sync);
     };
   }, [steps.length]);
 
@@ -45,11 +51,11 @@ export const AppDemo = () => {
       ref={sectionRef}
       id="app-demo"
       className="relative bg-background"
-      style={{ height: `${steps.length * 100}vh` }}
+      style={isDesktop ? { height: `${steps.length * 100}vh` } : undefined}
       aria-label="App flow demo"
     >
       {/* MOBILE fallback: snap carousel, hidden on lg */}
-      <div className="lg:hidden absolute inset-0 top-0" style={{ position: "absolute", height: "auto" }}>
+      <div className="lg:hidden">
         <div className="container py-20">
           <Header />
           <div className="mt-10 -mx-4 px-4 flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-px-4 pb-6">
