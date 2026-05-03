@@ -36,7 +36,7 @@ function useCountUp(target: number, run: boolean) {
 }
 
 export const ValueProof = () => {
-  const { t } = useLang();
+  const { t, formatPrice } = useLang();
   const ref = useRef<HTMLDivElement>(null);
   const [run, setRun] = useState(false);
   useEffect(() => {
@@ -80,11 +80,11 @@ export const ValueProof = () => {
               return (
                 <div key={it.name} className="grid grid-cols-4 gap-2 px-5 py-4 border-b border-border/60 items-center text-sm">
                   <div className="font-medium">{name}</div>
-                  <div className={cell(it.a)}>{it.a} Kč</div>
-                  <div className={cell(it.b)}>{it.b} Kč</div>
+                  <div className={cell(it.a)}>{formatPrice(it.a)}</div>
+                  <div className={cell(it.b)}>{formatPrice(it.b)}</div>
                   <div className="text-right">
                     <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-success-soft text-success font-semibold tabular-nums">
-                      <Check className="w-3.5 h-3.5" /> {it.c} Kč
+                      <Check className="w-3.5 h-3.5" /> {formatPrice(it.c)}
                     </span>
                   </div>
                 </div>
@@ -92,15 +92,15 @@ export const ValueProof = () => {
             })}
             <div className="grid grid-cols-4 gap-2 px-5 py-5 bg-secondary/30 items-center font-semibold">
               <div>{t.proof.total}</div>
-              <div className="text-right text-muted-foreground tabular-nums">{ta} Kč</div>
-              <div className="text-right text-muted-foreground tabular-nums">{tb} Kč</div>
-              <div className="text-right text-success tabular-nums text-lg">{tc} Kč</div>
+              <div className="text-right text-muted-foreground tabular-nums">{formatPrice(ta)}</div>
+              <div className="text-right text-muted-foreground tabular-nums">{formatPrice(tb)}</div>
+              <div className="text-right text-success tabular-nums text-lg">{formatPrice(tc)}</div>
             </div>
           </div>
 
           <div className="mt-6 flex items-center justify-center">
             <div className="inline-flex items-center gap-3 rounded-full bg-success-soft border border-success/20 px-6 py-3">
-              <span className="text-success font-semibold">{t.proof.youSave} {savings} Kč</span>
+              <span className="text-success font-semibold">{t.proof.youSave} {formatPrice(savings)}</span>
               <span className="text-muted-foreground text-sm">{t.proof.onThisList}</span>
             </div>
           </div>

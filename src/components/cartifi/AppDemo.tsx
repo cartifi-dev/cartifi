@@ -217,7 +217,9 @@ const ScreenOptimize = ({
   screen,
 }: {
   screen: { header: string; sub: string; stores: string[]; picked: string };
-}) => (
+}) => {
+  const { formatPrice } = useLang();
+  return (
   <div className="h-full flex flex-col p-4 pt-8">
     <p className="text-xs text-muted-foreground">9:41</p>
     <h4 className="mt-2 text-base font-semibold">{screen.header}</h4>
@@ -237,7 +239,7 @@ const ScreenOptimize = ({
         >
           <span className="font-medium">{s}</span>
           <span className={`font-semibold ${i === 1 ? "text-primary" : "text-muted-foreground line-through"}`}>
-            {[412, 358, 401][i]} Kč
+            {formatPrice([412, 358, 401][i])}
           </span>
         </div>
       ))}
@@ -246,7 +248,8 @@ const ScreenOptimize = ({
       <Check className="w-3 h-3" /> {screen.picked}
     </div>
   </div>
-);
+  );
+};
 
 const ScreenShare = ({
   screen,
@@ -283,17 +286,20 @@ const ScreenShare = ({
 const ScreenSave = ({
   screen,
 }: {
-  screen: { header: string; amount: string; summary: string; cta: string };
-}) => (
+  screen: { header: string; summary: string; cta: string };
+}) => {
+  const { formatPrice } = useLang();
+  return (
   <div className="h-full flex flex-col items-center justify-center p-4 text-center">
     <div className="w-12 h-12 rounded-full bg-primary/15 flex items-center justify-center">
       <Check className="w-6 h-6 text-primary" />
     </div>
     <p className="mt-4 text-xs text-muted-foreground">{screen.header}</p>
-    <p className="text-3xl font-bold tracking-tight text-gradient">{screen.amount}</p>
+    <p className="text-3xl font-bold tracking-tight text-gradient">{formatPrice(247)}</p>
     <p className="mt-2 text-[11px] text-muted-foreground">{screen.summary}</p>
     <button className="mt-5 w-full rounded-full bg-gradient-cta text-primary-foreground text-xs font-semibold py-2.5 shadow-soft">
       {screen.cta}
     </button>
   </div>
-);
+  );
+};

@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useLang } from "@/i18n/LanguageContext";
-import { LangSwitch } from "./LangSwitch";
+import { CountrySelector } from "./CountrySelector";
 
 export const Nav = () => {
   const { t } = useLang();
@@ -19,7 +19,7 @@ export const Nav = () => {
         <a href="#proof" className="hover:text-foreground transition-colors">{t.nav.proof}</a>
       </nav>
       <div className="flex items-center gap-2">
-        <LangSwitch className="hidden sm:flex" />
+        <CountrySelector className="hidden sm:inline-flex" />
         <Button variant="cta" size="sm" asChild>
           <a href="#demo">{t.nav.cta}</a>
         </Button>
