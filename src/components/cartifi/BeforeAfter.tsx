@@ -3,7 +3,7 @@ import mascotCalm from "@/assets/mascot-calm.jpg";
 import { useLang } from "@/i18n/LanguageContext";
 
 export const BeforeAfter = () => {
-  const { t } = useLang();
+  const { t, formatPrice } = useLang();
   return (
   <section className="py-24 lg:py-32 bg-gradient-soft">
     <div className="container">
@@ -38,8 +38,8 @@ export const BeforeAfter = () => {
               <img src={mascotCalm} alt={t.beforeAfter.mascotAlt} loading="lazy" width={1200} height={900} className="w-full h-52 object-contain" />
             </div>
             <div className="flex items-baseline gap-3 mb-3">
-              <div className="text-3xl font-semibold tabular-nums">487 Kč</div>
-              <div className="text-sm text-success font-medium">−128 Kč {t.beforeAfter.saved}</div>
+              <div className="text-3xl font-semibold tabular-nums">{formatPrice(487)}</div>
+              <div className="text-sm text-success font-medium">−{formatPrice(128)} {t.beforeAfter.saved}</div>
             </div>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Sparkles className="w-4 h-4 text-orange" /> {t.beforeAfter.summary}
