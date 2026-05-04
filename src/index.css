@@ -116,31 +116,67 @@
       inset 0 1px 0 hsl(0 0% 100% / 0.6);
   }
 
-  /* Shiba orbiting around the phone */
-  @keyframes shiba-orbit {
-    from { transform: rotate(0deg) translateX(var(--orbit-r, 180px)) rotate(0deg); }
-    to   { transform: rotate(360deg) translateX(var(--orbit-r, 180px)) rotate(-360deg); }
+  /* Mascot orbit — elliptical path, premium ease, perspective scale */
+  @keyframes mascot-orbit-x {
+    0%   { transform: translateX(calc(var(--orbit-rx) * -1)); }
+    50%  { transform: translateX(var(--orbit-rx)); }
+    100% { transform: translateX(calc(var(--orbit-rx) * -1)); }
   }
-  @keyframes shiba-bob {
-    0%, 100% { transform: translateY(0) scaleX(var(--shiba-flip, 1)); }
-    50%      { transform: translateY(-8px) scaleX(var(--shiba-flip, 1)); }
+  @keyframes mascot-orbit-y {
+    0%   { transform: translateY(0); }
+    25%  { transform: translateY(var(--orbit-ry)); }
+    50%  { transform: translateY(0); }
+    75%  { transform: translateY(calc(var(--orbit-ry) * -1)); }
+    100% { transform: translateY(0); }
+  }
+  /* Perspective: slight scale change as it moves around */
+  @keyframes mascot-scale {
+    0%, 100% { transform: scale(0.92); }
+    25%      { transform: scale(1.02); } /* front, closer */
+    50%      { transform: scale(0.92); }
+    75%      { transform: scale(0.82); } /* back, farther */
+  }
+  /* Front/back z-order toggle — visible 0–50%, dimmed 50–100% (behind phone) */
+  @keyframes mascot-depth {
+    0%, 49.9%  { opacity: 1; filter: none; }
+    50%, 99.9% { opacity: 0.55; filter: blur(1px) brightness(0.92); }
+    100%       { opacity: 1; filter: none; }
+  }
+  /* Facing direction: face right on left→right half, flip on return */
+  @keyframes mascot-face {
+    0%, 49.9%  { transform: scaleX(1); }
+    50%, 100%  { transform: scaleX(-1); }
   }
   @keyframes phone-float {
     0%, 100% { transform: translateY(0); }
-    50%      { transform: translateY(-10px); }
+    50%      { transform: translateY(-8px); }
   }
   @keyframes soft-pulse {
-    0%, 100% { opacity: 0.55; transform: scale(1); }
-    50%      { opacity: 0.8;  transform: scale(1.05); }
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50%      { opacity: 0.75; transform: scale(1.04); }
+  }
+  @keyframes mascot-shadow {
+    0%, 100% { opacity: 0.25; transform: scaleX(0.9); }
+    25%      { opacity: 0.35; transform: scaleX(1.05); }
+    50%      { opacity: 0.25; transform: scaleX(0.9); }
+    75%      { opacity: 0.15; transform: scaleX(0.75); }
   }
 
-  .animate-orbit { animation: shiba-orbit 14s linear infinite; }
-  .animate-bob   { animation: shiba-bob 0.55s ease-in-out infinite; }
-  .animate-phone-float { animation: phone-float 4s ease-in-out infinite; }
-  .animate-soft-pulse  { animation: soft-pulse 3.5s ease-in-out infinite; }
+  .animate-orbit-x   { animation: mascot-orbit-x 9s ease-in-out infinite; }
+  .animate-orbit-y   { animation: mascot-orbit-y 9s ease-in-out infinite; }
+  .animate-mascot-scale { animation: mascot-scale 9s ease-in-out infinite; }
+  .animate-mascot-depth { animation: mascot-depth 9s ease-in-out infinite; }
+  .animate-mascot-face  { animation: mascot-face 9s steps(1, end) infinite; }
+  .animate-phone-float  { animation: phone-float 4.5s ease-in-out infinite; }
+  .animate-soft-pulse   { animation: soft-pulse 4s ease-in-out infinite; }
+  .animate-mascot-shadow { animation: mascot-shadow 9s ease-in-out infinite; }
 
   @media (prefers-reduced-motion: reduce) {
-    .animate-orbit, .animate-bob, .animate-phone-float, .animate-soft-pulse { animation: none !important; }
+    .animate-orbit-x, .animate-orbit-y, .animate-mascot-scale,
+    .animate-mascot-depth, .animate-mascot-face,
+    .animate-phone-float, .animate-soft-pulse, .animate-mascot-shadow {
+      animation: none !important;
+    }
   }
 
   /* Scroll reveal */

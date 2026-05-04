@@ -58,35 +58,61 @@ export const Hero = () => {
 };
 
 const MascotOrbit = ({ alt }: { alt: string }) => {
+  // Elliptical orbit: wider horizontally than vertically so the mascot
+  // stays around the mid-section and never crosses the headline/CTA.
+  const orbitVars = {
+    ["--orbit-rx" as string]: "min(40%, 175px)",
+    ["--orbit-ry" as string]: "min(14%, 55px)",
+  } as React.CSSProperties;
+
   return (
     <div className="relative mx-auto w-full max-w-[460px] aspect-square">
-      {/* Glow */}
-      <div className="absolute inset-8 rounded-full bg-gradient-warm opacity-40 blur-3xl animate-soft-pulse" />
+      {/* Ambient glow */}
+      <div className="absolute inset-10 rounded-full bg-gradient-warm opacity-35 blur-3xl animate-soft-pulse" />
 
-      {/* Orbit ring (visual) */}
-      <div className="absolute inset-6 rounded-full border border-dashed border-primary/20" />
-
-      {/* Phone in center */}
-      <div className="absolute inset-0 flex items-center justify-center">
+      {/* Phone in center (above back half of orbit, below front half via z-index layering) */}
+      <div className="absolute inset-0 z-10 flex items-center justify-center">
         <div className="animate-phone-float">
           <PhoneMock />
         </div>
       </div>
 
-      {/* Shiba orbit container */}
+      {/* Mascot orbit — elliptical path via two nested animations.
+          Sits above the phone (z-20) but its own depth keyframe dims/blurs
+          it during the back half, creating the "pass behind" illusion
+          without ever overlapping the app UI awkwardly. */}
       <div
-        className="absolute inset-0 flex items-center justify-center pointer-events-none"
-        style={{ ["--orbit-r" as string]: "min(38%, 170px)" }}
+        className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none"
+        style={orbitVars}
       >
-        <div className="animate-orbit" style={{ transformOrigin: "center" }}>
-          <div className="animate-bob">
-            <img
-              src={shibaRunning}
-              alt={alt}
-              width={120}
-              height={120}
-              className="w-[88px] sm:w-[110px] h-auto drop-shadow-[0_8px_18px_rgba(220,120,40,0.35)]"
-            />
+        {/* X axis (left↔right) */}
+        <div className="animate-orbit-x will-change-transform">
+          {/* Y axis (subtle up/down to make it elliptical) */}
+          <div className="animate-orbit-y will-change-transform">
+            {/* Depth: opacity + slight blur on back half */}
+            <div className="animate-mascot-depth">
+              {/* Perspective scale */}
+              <div className="animate-mascot-scale will-change-transform">
+                {/* Facing direction flip */}
+                <div className="animate-mascot-face will-change-transform">
+                  <div className="relative">
+                    <img
+                      src={shibaRunning}
+                      alt={alt}
+                      width={140}
+                      height={140}
+                      className="w-[80px] sm:w-[120px] h-auto select-none drop-shadow-[0_10px_18px_hsl(var(--primary)/0.35)]"
+                      draggable={false}
+                    />
+                    {/* Soft ground shadow under mascot */}
+                    <div
+                      aria-hidden
+                      className="absolute left-1/2 -translate-x-1/2 -bottom-2 h-2 w-12 sm:w-16 rounded-full bg-foreground/40 blur-md animate-mascot-shadow"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
