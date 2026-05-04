@@ -12,7 +12,7 @@ export type Lang =
   | "fi"
   | "hr";
 
-export type Currency = "EUR" | "CZK" | "PLN" | "NOK" | "DKK" | "SEK";
+export type Currency = "EUR" | "CZK" | "PLN" | "NOK" | "DKK" | "SEK" | "GBP";
 
 export interface LocaleMeta {
   code: Lang;
@@ -25,7 +25,7 @@ export interface LocaleMeta {
 }
 
 export const LOCALES: LocaleMeta[] = [
-  { code: "en", country: "United Kingdom", countryNative: "United Kingdom", langNative: "English", flag: "🇬🇧", currency: "EUR", intlLocale: "en-GB" },
+  { code: "en", country: "United Kingdom", countryNative: "United Kingdom", langNative: "English", flag: "🇬🇧", currency: "GBP", intlLocale: "en-GB" },
   { code: "cs", country: "Czechia",        countryNative: "Česko",          langNative: "Čeština",  flag: "🇨🇿", currency: "CZK", intlLocale: "cs-CZ" },
   { code: "de", country: "Germany",        countryNative: "Deutschland",    langNative: "Deutsch",  flag: "🇩🇪", currency: "EUR", intlLocale: "de-DE" },
   { code: "pl", country: "Poland",         countryNative: "Polska",         langNative: "Polski",   flag: "🇵🇱", currency: "PLN", intlLocale: "pl-PL" },
@@ -47,6 +47,7 @@ export const FX_FROM_CZK: Record<Currency, number> = {
   NOK: 0.46,
   DKK: 0.30,
   SEK: 0.46,
+  GBP: 0.034,
 };
 
 export const getMeta = (lang: Lang): LocaleMeta =>
