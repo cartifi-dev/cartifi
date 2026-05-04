@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
-import mascotHero from "@/assets/mascot-hero.jpg";
+import shibaRunning from "@/assets/shiba-running.png";
 import { useLang } from "@/i18n/LanguageContext";
 
 export const Hero = () => {
@@ -48,22 +48,69 @@ export const Hero = () => {
           </div>
         </div>
 
-        {/* Cinematic mascot */}
+        {/* Animated mascot orbiting a phone */}
         <div className="relative animate-fade-in" style={{ animationDelay: "120ms" }}>
-          <div className="relative max-w-xl mx-auto">
-            <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-warm opacity-30 blur-3xl" />
-            <div className="relative rounded-[2rem] overflow-hidden shadow-card border border-border/60">
-              <img
-                src={mascotHero}
-                alt={t.hero.mascotAlt}
-                width={1200}
-                height={1600}
-                className="w-full h-auto object-cover"
-              />
-            </div>
-          </div>
+          <MascotOrbit alt={t.hero.mascotAlt} />
         </div>
       </div>
     </section>
   );
 };
+
+const MascotOrbit = ({ alt }: { alt: string }) => {
+  return (
+    <div className="relative mx-auto w-full max-w-[460px] aspect-square">
+      {/* Glow */}
+      <div className="absolute inset-8 rounded-full bg-gradient-warm opacity-40 blur-3xl animate-soft-pulse" />
+
+      {/* Orbit ring (visual) */}
+      <div className="absolute inset-6 rounded-full border border-dashed border-primary/20" />
+
+      {/* Phone in center */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="animate-phone-float">
+          <PhoneMock />
+        </div>
+      </div>
+
+      {/* Shiba orbit container */}
+      <div
+        className="absolute inset-0 flex items-center justify-center pointer-events-none"
+        style={{ ["--orbit-r" as string]: "min(38%, 170px)" }}
+      >
+        <div className="animate-orbit" style={{ transformOrigin: "center" }}>
+          <div className="animate-bob">
+            <img
+              src={shibaRunning}
+              alt={alt}
+              width={120}
+              height={120}
+              className="w-[88px] sm:w-[110px] h-auto drop-shadow-[0_8px_18px_rgba(220,120,40,0.35)]"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const PhoneMock = () => (
+  <div className="relative w-[170px] sm:w-[200px] aspect-[9/19] rounded-[2rem] bg-foreground/90 p-1.5 shadow-card">
+    <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-16 h-3.5 bg-foreground rounded-b-2xl z-10" />
+    <div className="relative w-full h-full rounded-[1.65rem] bg-gradient-to-b from-background to-secondary/40 overflow-hidden p-3 pt-7">
+      <div className="text-[9px] font-semibold tracking-wider uppercase text-primary">Cartifi</div>
+      <div className="mt-1 text-[10px] font-semibold leading-tight">Your cheapest cart</div>
+      <div className="mt-2 space-y-1.5">
+        {["Milk 1L", "Bread", "Eggs (10)", "Apples 1kg"].map((it, i) => (
+          <div key={it} className="flex items-center justify-between rounded-md bg-card/80 border border-border px-2 py-1 text-[8px]">
+            <span className="truncate">{it}</span>
+            <span className="text-primary font-semibold">✓</span>
+          </div>
+        ))}
+      </div>
+      <div className="mt-2 rounded-md bg-gradient-cta text-primary-foreground text-[8px] font-semibold py-1 text-center">
+        Save 24%
+      </div>
+    </div>
+  </div>
+);
