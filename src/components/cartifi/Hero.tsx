@@ -9,7 +9,7 @@ export const Hero = () => {
   const headline = variant === 0 ? t.hero.headlineA : t.hero.headlineB;
 
   return (
-    <section id="top" className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
+    <section id="top" className="relative pt-10 pb-20 lg:pt-16 lg:pb-28 overflow-hidden">
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-20 -left-20 w-[500px] h-[500px] rounded-full bg-orange/20 blur-3xl" />
         <div className="absolute top-40 right-0 w-[600px] h-[600px] rounded-full bg-primary/15 blur-3xl" />
