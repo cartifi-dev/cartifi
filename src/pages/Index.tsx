@@ -1,6 +1,5 @@
 import { Nav } from "@/components/cartifi/Nav";
 import { Hero } from "@/components/cartifi/Hero";
-import { GlassDemo } from "@/components/cartifi/GlassDemo";
 import { ValueProof } from "@/components/cartifi/ValueProof";
 import { BeforeAfter } from "@/components/cartifi/BeforeAfter";
 import { LifeBenefit } from "@/components/cartifi/LifeBenefit";
@@ -17,13 +16,12 @@ const Index = () => {
     <main className="min-h-screen bg-background">
       <Nav />
       <Hero />
-      <GlassDemo />
-      <Demo />
+      <HowItWorks />
+      <AppDemo />
       <ValueProof />
       <BeforeAfter />
       <LifeBenefit />
-      <HowItWorks />
-      <AppDemo />
+      <Demo />
       <FinalCTA />
       <Footer />
     </main>
