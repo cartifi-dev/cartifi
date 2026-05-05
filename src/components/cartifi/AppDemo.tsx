@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLang } from "@/i18n/LanguageContext";
-import { Check, Search, Share2, Sparkles, ChevronLeft, ChevronRight, MessageCircle, Link2, Mail } from "lucide-react";
+import { Check, Search, Share2, ChevronLeft, ChevronRight, MessageCircle, Link2, Mail } from "lucide-react";
 
 /**
  * Interactive phone demo. One slide visible at a time.
@@ -27,10 +27,7 @@ export const AppDemo = () => {
     <section id="app-demo" className="py-24 lg:py-32 bg-background" aria-label="Cartifi live demo">
       <div className="container">
         <div className="max-w-2xl mx-auto text-center reveal">
-          <p className="inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-widest text-primary/80">
-            <Sparkles className="w-3.5 h-3.5" /> {t.appDemo.eyebrow}
-          </p>
-          <h2 className="mt-3 text-4xl lg:text-5xl font-semibold tracking-tight">
+          <h2 className="text-4xl lg:text-5xl font-semibold tracking-tight">
             See it <span className="text-gradient">in action</span>
           </h2>
           <p className="mt-4 text-muted-foreground text-lg">{t.appDemo.subtitle}</p>
