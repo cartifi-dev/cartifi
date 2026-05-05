@@ -78,12 +78,6 @@ export const AppDemo = () => {
           </button>
         </div>
 
-        <div className="mt-8 max-w-md mx-auto text-center min-h-[3.5rem]">
-          <p className="text-sm font-semibold tracking-wider uppercase text-primary">
-            {steps[active].tag}
-          </p>
-          <h3 className="mt-1 text-xl font-semibold">{steps[active].title}</h3>
-        </div>
       </div>
     </section>
   );
