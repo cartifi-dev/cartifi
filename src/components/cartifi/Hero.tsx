@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
-import shibaRunning from "@/assets/shiba-running.png";
 import { useLang } from "@/i18n/LanguageContext";
+import carfiHero from "@/assets/carfi-hero.mp4.asset.json";
 
 export const Hero = () => {
   const { t } = useLang();
@@ -50,14 +50,38 @@ export const Hero = () => {
 
         {/* Animated mascot orbiting a phone */}
         <div className="relative animate-fade-in" style={{ animationDelay: "120ms" }}>
-          <MascotOrbit alt={t.hero.mascotAlt} />
+          <CinematicHero alt={t.hero.mascotAlt} />
         </div>
       </div>
     </section>
   );
 };
 
-const MascotOrbit = ({ alt }: { alt: string }) => {
+const CinematicHero = ({ alt }: { alt: string }) => {
+  return (
+    <div className="relative mx-auto w-full max-w-[460px] aspect-[9/16]">
+      {/* Ambient warm glow matching landing page palette */}
+      <div className="absolute -inset-6 rounded-[3rem] bg-gradient-warm opacity-40 blur-3xl animate-soft-pulse pointer-events-none" />
+      <div className="absolute inset-0 rounded-[2.5rem] overflow-hidden shadow-card bg-gradient-soft">
+        <video
+          src={carfiHero.url}
+          aria-label={alt}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="w-full h-full object-cover"
+        />
+        {/* Soft warm overlay to blend with cream background */}
+        <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-background/10 via-transparent to-background/20 mix-blend-soft-light" />
+      </div>
+    </div>
+  );
+};
+
+// Legacy orbit kept unused for reference – removed.
+const _LegacyMascotOrbit = ({ alt }: { alt: string }) => {
   // Elliptical orbit: wider horizontally than vertically so the mascot
   // stays around the mid-section and never crosses the headline/CTA.
   const orbitVars = {
@@ -97,7 +121,7 @@ const MascotOrbit = ({ alt }: { alt: string }) => {
                 <div className="animate-mascot-face will-change-transform">
                   <div className="relative">
                     <img
-                      src={shibaRunning}
+                      src=""
                       alt={alt}
                       width={140}
                       height={140}
