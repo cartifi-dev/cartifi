@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles, ShoppingCart, ShoppingBasket, Milk, Apple, Egg, Carrot, Croissant } from "lucide-react";
 import { useLang } from "@/i18n/LanguageContext";
+import mascotLeap from "@/assets/carfi-mascot-leap.png";
 
 export const Hero = () => {
   const { t } = useLang();
@@ -79,7 +80,7 @@ const orbs = [
 const HeroStage = ({ alt }: { alt: string }) => {
   return (
     <div
-      className="relative mx-auto w-full max-w-[520px] aspect-[9/16] select-none"
+      className="relative mx-auto w-full max-w-[300px] sm:max-w-[340px] aspect-[9/16] select-none"
       role="img"
       aria-label={alt}
     >
@@ -97,6 +98,17 @@ const HeroStage = ({ alt }: { alt: string }) => {
             "0 30px 80px -20px rgba(0,0,0,0.7), inset 0 0 1px rgba(255,255,255,0.08)",
         }}
       >
+        {/* Portal burst — pulses when mascot "exits" the screen */}
+        <div
+          className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(56,189,248,0.55) 0%, rgba(56,189,248,0.18) 40%, transparent 70%)",
+            mixBlendMode: "screen",
+            animation: "portal-burst 7s ease-in-out infinite",
+          }}
+        />
+
         {/* Inner nebula glows */}
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute top-10 -left-10 w-72 h-72 rounded-full blur-3xl opacity-50"
@@ -221,6 +233,40 @@ const HeroStage = ({ alt }: { alt: string }) => {
           </div>
         );
       })}
+
+      {/* Mascot — bursts out of phone screen, then orbits */}
+      <div
+        className="pointer-events-none absolute left-1/2 top-1/2 z-30 w-44 sm:w-52 -translate-x-1/2 -translate-y-1/2"
+        style={{ animation: "mascot-leap 7s cubic-bezier(0.4,0,0.2,1) infinite" }}
+      >
+        {/* Glowing aura behind mascot */}
+        <div
+          className="absolute inset-0 rounded-full blur-2xl"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(56,189,248,0.55), transparent 65%)",
+          }}
+        />
+        {/* Digital shard particles */}
+        {[...Array(8)].map((_, i) => (
+          <span
+            key={i}
+            className="absolute left-1/2 top-1/2 w-1 h-1 rounded-full bg-cyan-300"
+            style={{
+              boxShadow: "0 0 8px rgba(56,189,248,0.9)",
+              animation: `shard-fly 7s ease-out ${i * 0.05}s infinite`,
+              transform: `rotate(${i * 45}deg) translateY(-12px)`,
+            }}
+          />
+        ))}
+        <img
+          src={mascotLeap}
+          alt="Carfi mascot"
+          width={208}
+          height={208}
+          className="relative w-full h-auto drop-shadow-[0_18px_24px_rgba(0,0,0,0.55)]"
+        />
+      </div>
     </div>
   );
 };
