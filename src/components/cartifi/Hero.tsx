@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, ShoppingCart, ShoppingBasket, Milk, Apple, Egg, Carrot, Croissant } from "lucide-react";
 import { useLang } from "@/i18n/LanguageContext";
-import { ShoppingCart, ShoppingBasket, Milk, Apple, Egg, Carrot, Croissant } from "lucide-react";
 
 export const Hero = () => {
   const { t } = useLang();
